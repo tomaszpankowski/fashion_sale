@@ -45,74 +45,62 @@
                 </div>
             </nav>
         </header>
-        <main>
-            <section class="collections-s1 container-fluid d-flex minh-50vh align-items-center py-5">
-                <div class="row mx-0 w-100 mt-5">
-                    <div class="col-12 col-md-7 minh-25vh"></div>
-                    <div class="col-12 col-md-5 minh-50vh d-flex align-items-center">
-                        <div class="w-100 text-center text-md-start text-shadow">
-                            <h2 class="dispaly-6 fw-bold text-white">
-                                Our Collections
-                            </h2>
-                            <p class="text-white">
-                                All aspects of male and female fashionable dress are represented, including 
-                                indoor and outdoor clothing, underwear, shoes, hats and accessories. This 
-                                collection is the responsibility of the Walker Gallery.
-                            </p>
-                        </div>
+        <section class="login-s1 container-fluid d-flex align-items-center bg-secondary py-5 minh-100vh">
+            <div class="my-auto w-100">
+                <div class="row mx-0 w-100 mt-sm-5">
+                    <div class="col-xs-12 col-sm-8 col-md-6 offset-sm-2 offset-md-3 text-center">
+                        <h3 class="text-center font-header text-light text-shadow mb-3">Message sent!</h3>
+                        <table class="table table-hover border text-left font-menu bg-light opacity-8">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th colspan="2" class="font-header">Summary</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Full name</td>
+                                    <td>
+                                        <?php 
+                                        if(isset($_POST['fname']))
+                                            echo htmlspecialchars($_POST['fname']);
+                                        ?>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Phone</td>
+                                    <td>
+                                        <?php 
+                                        if(isset($_POST['fphone']))
+                                            echo htmlspecialchars($_POST['fphone']);
+                                        ?>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Email</td>
+                                    <td>
+                                        <?php 
+                                        if(isset($_POST['fmail']))
+                                            echo htmlspecialchars($_POST['fmail']);
+                                        ?>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Message</td>
+                                    <td>
+                                        <?php 
+                                        if(isset($_POST['fmsg']))
+                                            echo htmlspecialchars($_POST['fmsg']);
+                                        ?>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <a href="contact.html" 
+                            class="btn btn-success font-header mt-3">OK</a>
                     </div>
                 </div>
-            </section>
-            <section class="collections-s2 border-top border-dark container-fluid d-flex minh-50vh bg-light align-items-center py-5">
-                <div class="row mx-0 w-100">
-                    <div class="col-12 col-md-6 minh-25vh order-1 order-md-2"></div>
-                    <div class="col-12 col-md-6 minh-50vh order-2 order-md-1 d-flex align-items-center">
-                        <div class="w-100 text-center text-shadow text-md-start">
-                            <h5 class="text-white opacity-8">
-                                Seasonal collection
-                            </h5>
-                            <h2 class="dispaly-6 text-white fw-bold">
-                                8th century fashion
-                            </h2>
-                            <p class="text-white">
-                                The fashion collection includes approximately 50 items of male and female dress 
-                                from the newest fashion trends. They include examples of day and evening wear, 
-                                underwear, shoes, hats and other accessories.
-                            </p>
-                            <p class="text-white">
-                                There is a similar-sized collection of Western European textiles, divided between 
-                                the Walker Gallery and the Lever Gallery at Port Sunlight. These items include 
-                                tapestries, embroideries, lace and household furnishings, dating from about 1600 
-                                to the present day
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <section class="collections-s3 border-top border-dark container-fluid d-flex minh-50vh bg-white align-items-center py-5">
-                <div class="row mx-0 w-100">
-                    <div class="col-12 col-md-6 minh-25vh"></div>
-                    <div class="col-12 col-md-6 minh-50vh d-flex align-items-center">
-                        <div class="w-100 text-center text-shadow text-md-start">
-                            <h5 class="text-white opacity-8">
-                                All-time collection
-                            </h5>
-                            <h2 class="dispaly-6 text-white fw-bold">
-                                Street fashion
-                            </h2>
-                            <p class="text-white">
-                                The fashion collection includes a small but growing collection of streetwear. 
-                                These garments chart the rise of sportswear as leisurewear, from the 1980s until 
-                                the present day, and the development of distinctive 'style tribes', linked to 
-                                music and other elements of popular culture, from the 1970s onwards. They include 
-                                clothes worn by Liverpool's rock fans, New Romantics and punks, as well as 
-                                examples of designer tracksuits, shell suits and trainers.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </main>
+            </div>
+        </section>
         <footer class="container-fluid d-flex text-dark align-items-center bg-dark text-white pt-3 opacity-9 border-top">
             <div class="row mx-0 w-100 small opacity-9">
                 <div class="col-12 col-md-5 col-lg-4 text-center text-md-start">

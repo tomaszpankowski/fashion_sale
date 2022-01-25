@@ -1,3 +1,95 @@
+<?php
+
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();   
+}
+
+include_once "php/comm.php";
+include_once "php/db.php";
+include_once "php/t_message.php";
+include_once "php/t_user.php";
+
+//to remove after pub
+//include_once "php/support.php";
+//createAdminAccount("password","admin@mail.com","1234");
+
+if(isset($_POST["username"])
+&& isset($_POST["userpass"])){
+    DatabaseConnect();
+    $usr = new TUser($GLOBALS['connection']);   
+    $usr->getByName(htmlspecialchars($_POST["username"]));
+    if($usr->getData("username")===htmlspecialchars($_POST['username'])
+    && $usr->getData("password")===sha1(htmlspecialchars($_POST['userpass']))
+    ){
+        $_SESSION["UserLogged"] = $usr->getData("username");
+    }
+}
+
+if(isset($_SESSION["UserLogged"])){
+    //reading view config
+    if(isset($_POST["login"])){
+        $_SESSION["view"] = "dashboard";
+    }
+    if(isset($_POST["dashboard"])){
+        $_SESSION["view"] = "dashboard";
+    }
+    if(isset($_POST["messages"])){
+        $_SESSION["view"] = "messages";
+    }
+    if(isset($_POST["users"])){
+        $_SESSION["view"] = "users";
+    }
+    if(isset($_POST["edituser"])){
+        $_SESSION["view"] = "edituser";
+    }
+    if(isset($_POST["msginfo"])){
+        $_SESSION["view"] = "msginfo";
+    }
+    if(isset($_POST["msgsearch"])){
+        $_SESSION["view"] = "msgsearch";
+    }
+    if(isset($_POST["logout"])){
+        $_SESSION["view"] = "logout";
+    }
+    
+    //template selection and config
+    if(isset($_SESSION["view"])){
+        switch($_SESSION["view"]){
+            case "messages":
+                $_SESSION["viewTemplate"] = "templates/tmp_messages.php";
+                $_SESSION["CurrentPage"]=1;
+                break;
+            case "users":
+                $_SESSION["viewTemplate"] = "templates/tmp_users.php";
+                $_SESSION["CurrentPage"]=1;
+                break;
+            case "dashboard":
+                $_SESSION["viewTemplate"] = "templates/tmp_dashboard.php";
+                $_SESSION["CurrentPage"]=1;
+                break;
+            case "msginfo":
+                $_SESSION["viewTemplate"] = "templates/tmp_message_info.php";
+                $_SESSION["CurrentPage"]=1;
+                break;
+            case "msgsearch":
+                $_SESSION["viewTemplate"] = "templates/tmp_messages.php";
+                $_SESSION["CurrentPage"]=1;
+                break;
+            case "edituser":
+                $_SESSION["viewTemplate"] = "templates/tmp_edituser.php";
+                break;
+            default: 
+                $_SESSION["viewTemplate"] = "templates/tmp_login.php";     
+                $_SESSION = array();
+                session_destroy(); 
+        }
+    }
+}
+else{
+    $_SESSION["viewTemplate"] = "templates/tmp_login.php";
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -8,9 +100,9 @@
         <link rel="stylesheet" type="text/css" href="css/styles.css"/>
         <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css"/>
         <link rel="icon" href="img/favicon.png"/>
-        <title>Fashion Sale | Collections</title>
+        <title>Fashion sale | User</title>
     </head>
-    <body class="minh-100vh bg-secondary">
+    <body class="minh-100vh">
         <header class="position-absolute w-100">
             <nav class="navbar navbar-dark navbar-expand-md bg-transparent">
                 <a href="index.html" class="navbar-brand ms-3">
@@ -46,73 +138,15 @@
             </nav>
         </header>
         <main>
-            <section class="collections-s1 container-fluid d-flex minh-50vh align-items-center py-5">
-                <div class="row mx-0 w-100 mt-5">
-                    <div class="col-12 col-md-7 minh-25vh"></div>
-                    <div class="col-12 col-md-5 minh-50vh d-flex align-items-center">
-                        <div class="w-100 text-center text-md-start text-shadow">
-                            <h2 class="dispaly-6 fw-bold text-white">
-                                Our Collections
-                            </h2>
-                            <p class="text-white">
-                                All aspects of male and female fashionable dress are represented, including 
-                                indoor and outdoor clothing, underwear, shoes, hats and accessories. This 
-                                collection is the responsibility of the Walker Gallery.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <section class="collections-s2 border-top border-dark container-fluid d-flex minh-50vh bg-light align-items-center py-5">
-                <div class="row mx-0 w-100">
-                    <div class="col-12 col-md-6 minh-25vh order-1 order-md-2"></div>
-                    <div class="col-12 col-md-6 minh-50vh order-2 order-md-1 d-flex align-items-center">
-                        <div class="w-100 text-center text-shadow text-md-start">
-                            <h5 class="text-white opacity-8">
-                                Seasonal collection
-                            </h5>
-                            <h2 class="dispaly-6 text-white fw-bold">
-                                8th century fashion
-                            </h2>
-                            <p class="text-white">
-                                The fashion collection includes approximately 50 items of male and female dress 
-                                from the newest fashion trends. They include examples of day and evening wear, 
-                                underwear, shoes, hats and other accessories.
-                            </p>
-                            <p class="text-white">
-                                There is a similar-sized collection of Western European textiles, divided between 
-                                the Walker Gallery and the Lever Gallery at Port Sunlight. These items include 
-                                tapestries, embroideries, lace and household furnishings, dating from about 1600 
-                                to the present day
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <section class="collections-s3 border-top border-dark container-fluid d-flex minh-50vh bg-white align-items-center py-5">
-                <div class="row mx-0 w-100">
-                    <div class="col-12 col-md-6 minh-25vh"></div>
-                    <div class="col-12 col-md-6 minh-50vh d-flex align-items-center">
-                        <div class="w-100 text-center text-shadow text-md-start">
-                            <h5 class="text-white opacity-8">
-                                All-time collection
-                            </h5>
-                            <h2 class="dispaly-6 text-white fw-bold">
-                                Street fashion
-                            </h2>
-                            <p class="text-white">
-                                The fashion collection includes a small but growing collection of streetwear. 
-                                These garments chart the rise of sportswear as leisurewear, from the 1980s until 
-                                the present day, and the development of distinctive 'style tribes', linked to 
-                                music and other elements of popular culture, from the 1970s onwards. They include 
-                                clothes worn by Liverpool's rock fans, New Romantics and punks, as well as 
-                                examples of designer tracksuits, shell suits and trainers.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </main>
+            <?php
+            if(isset($_SESSION["viewTemplate"])){
+                include $_SESSION["viewTemplate"]; 
+            }
+            else{
+                include "templates/tmp_login.php";                            
+            }
+            ?>
+        </main>    
         <footer class="container-fluid d-flex text-dark align-items-center bg-dark text-white pt-3 opacity-9 border-top">
             <div class="row mx-0 w-100 small opacity-9">
                 <div class="col-12 col-md-5 col-lg-4 text-center text-md-start">
