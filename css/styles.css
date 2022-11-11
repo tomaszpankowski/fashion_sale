@@ -1,3 +1,7 @@
+@font-face {
+  font-family: "Raleway";
+  src: url("../fonts/Raleway-VariableFont_wght.ttf");
+}
 /* line 1, ../sass/partials/_layout.scss */
 * {
   box-sizing: border-box;
@@ -564,25 +568,29 @@ body, html {
 .collections-s1 {
   background-position: center !important;
 }
+/* line 10, ../sass/partials/_modules.scss */
+.collections-s2 {
+  background-position: right !important;
+}
 
-/* line 12, ../sass/partials/_modules.scss */
+/* line 15, ../sass/partials/_modules.scss */
 .contact-s1 {
   background-position: right !important;
 }
-/* line 15, ../sass/partials/_modules.scss */
+/* line 18, ../sass/partials/_modules.scss */
 .contact-s3 {
   background-color: #aaa !important;
   background-blend-mode: multiply !important;
 }
 
-/* line 21, ../sass/partials/_modules.scss */
+/* line 24, ../sass/partials/_modules.scss */
 .index-s1 {
   background-color: #aaa;
   background-blend-mode: multiply;
   background-position: right !important;
 }
 
-/* line 28, ../sass/partials/_modules.scss */
+/* line 30, ../sass/partials/_modules.scss */
 footer {
   background-attachment: fixed;
   background-image: url(../img/footer_bg.jpg);
@@ -591,27 +599,44 @@ footer {
   background-size: cover;
 }
 
-/* line 32, ../sass/partials/_modules.scss */
+/* line 33, ../sass/partials/_modules.scss */
+h1, h2, h3, h4, h5, h6, .nav-link {
+  font-family: "Raleway";
+  letter-spacing: 1px;
+}
+
+/* line 37, ../sass/partials/_modules.scss */
+header {
+  z-index: 10;
+}
+
+/* line 40, ../sass/partials/_modules.scss */
 textarea {
   resize: none;
 }
 
 @media all and (max-width: 767px) {
-  /* line 38, ../sass/partials/_modules.scss */
+  /* line 46, ../sass/partials/_modules.scss */
   .collections-s1, .collections-s2, .collections-s3 {
     background-color: #888 !important;
     background-blend-mode: multiply;
   }
-  /* line 42, ../sass/partials/_modules.scss */
+  /* line 50, ../sass/partials/_modules.scss */
   .collections-s1 {
     background-position: left !important;
   }
-  /* line 45, ../sass/partials/_modules.scss */
+  /* line 53, ../sass/partials/_modules.scss */
   .collections-s2 {
     background-position: right !important;
   }
 
-  /* line 50, ../sass/partials/_modules.scss */
+  /* line 58, ../sass/partials/_modules.scss */
+  .contact-s1, .contact-s2, .contact-s3 {
+    background-color: #888 !important;
+    background-blend-mode: multiply;
+  }
+
+  /* line 64, ../sass/partials/_modules.scss */
   .navbar-nav {
     background-color: #333;
     border: 1px solid #666;
@@ -619,8 +644,8 @@ textarea {
     padding-right: 10px;
   }
 
-  /* line 58, ../sass/partials/_modules.scss */
-  .shopping-s1, .shopping-s2, .shopping-s3, .contact-s1, .contact-s2, .contact-s3 {
+  /* line 72, ../sass/partials/_modules.scss */
+  .shopping-s1 {
     background-color: #888 !important;
     background-blend-mode: multiply;
   }
