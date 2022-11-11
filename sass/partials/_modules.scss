@@ -7,6 +7,9 @@
     &-s1{
         background-position: center!important;
     }
+    &-s2{
+        background-position: right!important;
+    }
 }
 .contact{
     &-s1{
@@ -24,11 +27,16 @@
         background-position: right!important;
     }
 }
-
 footer{
     @include set-background($bg__footer-img);
 }
-
+h1,h2,h3,h4,h5,h6,.nav-link{
+    font-family: "Raleway";
+    letter-spacing: 1px;
+}
+header{
+    z-index: 10;
+}
 textarea{
     resize:none;
 }
@@ -46,6 +54,12 @@ textarea{
             background-position: right!important;
         }
     }
+    .contact{
+        &-s1,&-s2,&-s3{
+            background-color: #888!important;
+            background-blend-mode: multiply;
+        }
+    }
     .navbar{
         &-nav{
             background-color: #333;
@@ -54,8 +68,8 @@ textarea{
             padding-right: 10px;
         }
     }
-    .shopping,.contact{
-        &-s1,&-s2,&-s3{
+    .shopping{
+        &-s1{
             background-color: #888!important;
             background-blend-mode: multiply;
         }
